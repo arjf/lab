@@ -1,0 +1,21 @@
+services:
+  datastore-pg:
+    image: postgres:18.1-alpine
+    restart: always
+    shm_size: 512M
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - $PWD/postgresql.conf:/etc/postgresql/postgresql.conf
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+
+    env_file: ./psql.env
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d lab-dev-k3s -U lab-dev-k3s-srv"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
