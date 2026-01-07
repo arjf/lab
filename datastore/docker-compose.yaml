@@ -5,6 +5,11 @@ services:
     shm_size: 512M
     command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
 
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+
     ports:
       - "5432:5432"
 
