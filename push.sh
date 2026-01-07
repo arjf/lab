@@ -1,5 +1,5 @@
 #!/bin/bash
-targets=("lab-datastore" "lab-dev")
+targets=("lab-datastore" "lab-dev" "lab-dev-2")
 
 for target in "${targets[@]}"; do
   echo "pushing to $target"
